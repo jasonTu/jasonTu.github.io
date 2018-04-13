@@ -1,0 +1,651 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Python高级编程</title><link rel="stylesheet" href="/css/layout.css">
+<link rel="stylesheet" href="/css/main.css"><link rel="shortcut icon" href="/img/favicon.png"></head><body><header class="base-menu"><div class="menu-wrapper"><div class="menu-layout-bg"></div><nav class="menu-content"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Fireflies FLy</a></li><li class="menu-item"><a href="/blog/archives" class="menu-link">Archives</a></li><li class="menu-item"><a href="/about" class="menu-link">About</a></li></ul></nav></div></header><header class="base-mobile-menu"><div class="mobile-menu-wrapper"><div class="menu-layout-bg"></div><nav class="menu-content"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Fireflies FLy</a></li><li class="menu-item"><a href="/blog/archives" class="menu-link">Archives</a></li><li class="menu-item"><a href="/about" class="menu-link">About</a></li></ul></nav><div id="mobile-menu-toggle" class="toggle-menu"><span class="menu-bar"></span><span class="menu-bar"> </span><span class="menu-bar"></span></div></div></header><div class="base-content"><div class="base-content-main"><article class="article-main"><h1 class="article-title">Python高级编程</h1><div class="article-meta"><p class="meta-item meta-time"><span class="meta-item-title">发表于: </span>2018-04-13</p><p class="meta-item meta-category"></p></div><div class="article-content"><h2 id="Referer"><a href="#Referer" class="headerlink" title="Referer"></a>Referer</h2><ul>
+<li><a href="http://www.iqiyi.com/w_19ru9hbjil.html" target="_blank" rel="noopener">Python高级编程</a></li>
+</ul>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> d.iteritems():</span><br><span class="line">    <span class="keyword">exec</span> <span class="string">'&#123;&#125;=&#123;&#125;'</span>.format(k, v)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a</span><br></pre></td></tr></table></figure>
+<pre><code>1
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b</span><br></pre></td></tr></table></figure>
+<pre><code>2
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">globals().update(d)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;a&apos;: 1, &apos;b&apos;: 2}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'a'</span></span><br></pre></td></tr></table></figure>
+<pre><code>&apos;a&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">globals()[<span class="string">'a'</span>] = <span class="string">'b'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;b&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vars() <span class="keyword">is</span> locals()</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">vars(sys) <span class="keyword">is</span> sys.__dict__</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><h3 id="字符串格式化"><a href="#字符串格式化" class="headerlink" title="字符串格式化"></a>字符串格式化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Today is: &#123;0:%a %b %d %H:%M:%S %Y&#125;'</span>.format(datetime.datetime.now())</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;Today is: Wed Mar 28 16:26:19 2018&apos;
+</code></pre><h3 id="列表去重"><a href="#列表去重" class="headerlink" title="列表去重"></a>列表去重</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Used in python2</span></span><br><span class="line">&#123;&#125;.fromkeys(l).keys()</span><br></pre></td></tr></table></figure>
+<pre><code>[1, 2, 3]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Common ways to remove duplicate items</span></span><br><span class="line">list(set(l))</span><br></pre></td></tr></table></figure>
+<pre><code>[1, 2, 3]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 操作字典</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict(([<span class="string">'a'</span>, <span class="number">1</span>], [<span class="string">'b'</span>, <span class="number">2</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;a&apos;: 1, &apos;b&apos;: 2}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict(zip(<span class="string">'ab'</span>, range(<span class="number">2</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;a&apos;: 0, &apos;b&apos;: 1}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip(<span class="string">'ab'</span>, range(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;a&apos;, 0), (&apos;b&apos;, 1)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict.fromkeys(<span class="string">'abc'</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;a&apos;: 1, &apos;b&apos;: 1, &apos;c&apos;: 1}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.setdefault(<span class="string">'a'</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>1
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.setdefault(<span class="string">'c'</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>100
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d1 = dict(a=<span class="number">1</span>, b=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d1</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;a&apos;: 1, &apos;b&apos;: 2}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2 = dict(b=<span class="number">2</span>, c=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;b&apos;: 2, &apos;c&apos;: 2}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d1 &amp; d2</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-42-0465179a342a&gt; in &lt;module&gt;()
+----&gt; 1 d1 &amp; d2
+
+
+TypeError: unsupported operand type(s) for &amp;: &apos;dict&apos; and &apos;dict&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v1 = d1.viewitems()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v1</span><br></pre></td></tr></table></figure>
+<pre><code>dict_items([(&apos;a&apos;, 1), (&apos;b&apos;, 2)])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v2 = d2.viewitems()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v2</span><br></pre></td></tr></table></figure>
+<pre><code>dict_items([(&apos;c&apos;, 2), (&apos;b&apos;, 2)])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v1 &amp; v2</span><br></pre></td></tr></table></figure>
+<pre><code>{(&apos;b&apos;, 2)}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict(v1 &amp; v2)</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;b&apos;: 2}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v1 | v2</span><br></pre></td></tr></table></figure>
+<pre><code>{(&apos;a&apos;, 1), (&apos;b&apos;, 2), (&apos;c&apos;, 2)}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict(v1 | v2)</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;a&apos;: 1, &apos;b&apos;: 2, &apos;c&apos;: 2}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v1 - v2</span><br></pre></td></tr></table></figure>
+<pre><code>{(&apos;a&apos;, 1)}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict(v1 - v2)</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;a&apos;: 1}
+</code></pre><h3 id="迭代器和生成器"><a href="#迭代器和生成器" class="headerlink" title="迭代器和生成器"></a>迭代器和生成器</h3><p>迭代器协议</p>
+<ul>
+<li>迭代器协议是指：对象需要提供next方法，它要么返回迭代中的下一项，要么就引起一个StopIteration异常，以终止迭代 </li>
+<li>可迭代对象就是：实现了迭代器协议的对象 </li>
+</ul>
+<p>生成器</p>
+<ul>
+<li>生成器函数：常规函数定义，但是，使用yield语句而不是return语句返回结果。yield语句一次返回一个结果，在每个结果中间，挂起函数的状态，以便下次重它离开的地方继续执行</li>
+<li>生成器表达式：类似于列表推导，但是，生成器返回按需产生结果的一个对象，而不是一次构建一个结果列表</li>
+<li>生成器只能遍历一次</li>
+</ul>
+<p><a href="https://www.zhihu.com/question/20829330" target="_blank" rel="noopener">定义参考</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 写一个简单的迭代器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Data</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self._data = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self._data.append(x)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">data</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> iter(self._data)</span><br><span class="line"></span><br><span class="line">d = Data()</span><br><span class="line">d.add(<span class="number">1</span>)</span><br><span class="line">d.add(<span class="number">2</span>)</span><br><span class="line">d.add(<span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> d.data():</span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
+<pre><code>1
+2
+3
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 标准迭代器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Data</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, *args)</span>:</span></span><br><span class="line">        self._data = list(args)</span><br><span class="line">        self._index = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    <span class="comment"># 兼容python3</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__next__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.next()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self._index &gt;= len(self._data):</span><br><span class="line">            <span class="keyword">raise</span> StopIteration()</span><br><span class="line">        d = self._data[self._index]</span><br><span class="line">        self._index += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> d</span><br><span class="line"></span><br><span class="line">d = Data(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> d:</span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
+<pre><code>1
+2
+3
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d.next()</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+StopIteration                             Traceback (most recent call last)
+
+&lt;ipython-input-63-c21d42f35a03&gt; in &lt;module&gt;()
+----&gt; 1 d.next()
+
+
+&lt;ipython-input-62-d2f3cd432333&gt; in next(self)
+     11     def next(self):
+     12         if self._index &gt;= len(self._data):
+---&gt; 13             raise StopIteration()
+     14         d = self._data[self._index]
+     15         self._index += 1
+
+
+StopIteration: 
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Data</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, *args)</span>:</span></span><br><span class="line">        self._data = list(args)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> self._data:</span><br><span class="line">            <span class="keyword">yield</span> x</span><br><span class="line"></span><br><span class="line">d = Data(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> d:</span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure>
+<pre><code>1
+2
+3
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成器表达式</span></span><br><span class="line">(i <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;generator object &lt;genexpr&gt; at 0x00000000061EBAB0&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成器版斐波那契数列</span></span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">()</span>:</span></span><br><span class="line">    a, b = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">yield</span> b</span><br><span class="line">        a, b = b, a + b</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> list(itertools.islice(fib(), <span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help(itertools.islice)</span><br></pre></td></tr></table></figure>
+<pre><code>Help on class islice in module itertools:
+
+class islice(__builtin__.object)
+ |  islice(iterable, [start,] stop [, step]) --&gt; islice object
+ |  
+ |  Return an iterator whose next() method returns selected values from an
+ |  iterable.  If start is specified, will skip all preceding elements;
+ |  otherwise, start defaults to zero.  Step defaults to one.  If
+ |  specified as another value, step determines how many values are 
+ |  skipped between successive calls.  Works like a slice() on a list
+ |  but returns an iterator.
+ |  
+ |  Methods defined here:
+ |  
+ |  __getattribute__(...)
+ |      x.__getattribute__(&apos;name&apos;) &lt;==&gt; x.name
+ |  
+ |  __iter__(...)
+ |      x.__iter__() &lt;==&gt; iter(x)
+ |  
+ |  next(...)
+ |      x.next() -&gt; the next value, or raise StopIteration
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __new__ = &lt;built-in method __new__ of type object&gt;
+ |      T.__new__(S, ...) -&gt; a new object with type S, a subtype of T
+</code></pre><h3 id="yeild和协程的关系"><a href="#yeild和协程的关系" class="headerlink" title="yeild和协程的关系"></a>yeild和协程的关系</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">coroutine</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'Coroutine start...'</span>)</span><br><span class="line">    result = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        s = <span class="keyword">yield</span> result</span><br><span class="line">        result = <span class="string">'result: &#123;&#125;'</span>.format(s)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = coroutine()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.send(<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Coroutine start...
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.send(<span class="string">'first'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;result: first&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.send(<span class="string">'second'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;result: second&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.send(<span class="string">'again'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+StopIteration                             Traceback (most recent call last)
+
+&lt;ipython-input-83-366be2d8d7f0&gt; in &lt;module&gt;()
+----&gt; 1 c.send(&apos;again&apos;)
+
+
+StopIteration: 
+</code></pre><h3 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">framework</span><span class="params">(logic, callback)</span>:</span></span><br><span class="line">    s = logic()</span><br><span class="line">    print(<span class="string">'[FX] logic: &#123;&#125;'</span>.format(s))</span><br><span class="line">    print(<span class="string">'[FX] do something'</span>)</span><br><span class="line">    callback(<span class="string">'async: &#123;&#125;'</span>.format(s))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logic</span><span class="params">()</span>:</span></span><br><span class="line">    s = <span class="string">'mylogic'</span></span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(s)</span>:</span></span><br><span class="line">    print(s)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">framework(logic, callback)</span><br></pre></td></tr></table></figure>
+<pre><code>[FX] logic: mylogic
+[FX] do something
+async: mylogic
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># next运行到"r = yield s"，返回s，然后切换到调用函数栈，等待发送send，logic协程接受到send之后，r的值被send的参数赋值，指令继续向下执行</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">framework</span><span class="params">(logic)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        it = logic()</span><br><span class="line">        s = next(it)</span><br><span class="line">        print(<span class="string">'[FX] logic: &#123;&#125;'</span>.format(s))</span><br><span class="line">        print(<span class="string">'[FX] do something'</span>)</span><br><span class="line">        it.send(<span class="string">'async: &#123;&#125;'</span>.format(s))</span><br><span class="line">    <span class="keyword">except</span> StopIteration:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logic</span><span class="params">()</span>:</span></span><br><span class="line">    s = <span class="string">'mylogic'</span></span><br><span class="line">    r = <span class="keyword">yield</span> s</span><br><span class="line">    print(r)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">framework(logic)</span><br></pre></td></tr></table></figure>
+<pre><code>[FX] logic: mylogic
+[FX] do something
+async: mylogic
+</code></pre><h3 id="上下文管理器contextmanager"><a href="#上下文管理器contextmanager" class="headerlink" title="上下文管理器contextmanager"></a>上下文管理器contextmanager</h3><p>语法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">some_generator</span><span class="params">(&lt;argument&gt;)</span>:</span></span><br><span class="line">    &lt;setup&gt;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">yield</span> &lt;value&gt;</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        &lt;cleanup&gt;</span><br><span class="line"><span class="keyword">with</span> some_generator(&lt;arguments&gt;) <span class="keyword">as</span> &lt;variable&gt;:</span><br><span class="line">    &lt;body&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以上语法的解释：</span></span><br><span class="line">&lt;setup&gt;</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    &lt;variable&gt; = &lt;value&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    &lt;cleanup&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># example</span></span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line">lock = threading.Lock()</span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">openlock</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'Acquire'</span>)</span><br><span class="line">    lock.acquire()</span><br><span class="line">    <span class="keyword">yield</span></span><br><span class="line">    print(<span class="string">'Releasing'</span>)</span><br><span class="line">    lock.release()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> openlock():</span><br><span class="line">    print(<span class="string">'Lock is locked: &#123;&#125;'</span>.format(lock.locked()))</span><br><span class="line">    print(<span class="string">'Do some stuff'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Acquire
+Lock is locked: True
+Do some stuff
+Releasing
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># another example</span></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">openlock2</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'Acquire'</span>)</span><br><span class="line">    <span class="keyword">with</span> lock:</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">    print(<span class="string">'Releasing'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> openlock2():</span><br><span class="line">    print(<span class="string">'Lock is locked: &#123;&#125;'</span>.format(lock.locked()))</span><br><span class="line">    print(<span class="string">'Do some stuff'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Acquire
+Lock is locked: True
+Do some stuff
+Releasing
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># at 42:32 in the vedio</span></span><br></pre></td></tr></table></figure>
+<h3 id="包导入"><a href="#包导入" class="headerlink" title="包导入"></a>包导入</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> imp</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f, filename, description = imp.find_module(<span class="string">'sys'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sys = imp.load_module(<span class="string">'sys'</span>, f, filename, description)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sys</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;module &apos;sys&apos; (built-in)&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os = __import__(<span class="string">'os'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.path</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;module &apos;ntpath&apos; from &apos;c:\python27\lib\ntpath.pyc&apos;&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filename = <span class="string">'test.py'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = open(filename)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">description = (<span class="string">'.py'</span>, <span class="string">'U'</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t = imp.load_module(<span class="string">'some'</span>, f, filename, description)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;module &apos;some&apos; from &apos;test.py&apos;&gt;
+</code></pre><h3 id="包创建all"><a href="#包创建all" class="headerlink" title="包创建all"></a>包创建<strong>all</strong></h3><p>因为import实际导入的是目标模块globals名字空间中的成员，那么就要一个问题：模块也会导入其他模块，这些模块同样在目标模块的名字空间中。在进行“import *”操作时，所有这些一并被带入到当前模块中，造成符号污染：</p>
+<p><strong>all</strong> = [‘add’, ‘x’]</p>
+<h3 id="包构建path"><a href="#包构建path" class="headerlink" title="包构建path"></a>包构建<strong>path</strong></h3><p>某些时候，保内的文件太多， 需要分类存放到多个目录中，但又不想拆分成新的包或子包。这么做是允许的，只要在<strong>init</strong>.py中用<strong>path</strong>指定所有子目录的全路径即可（子目录可放在包外）</p>
+<p>➜  python_pkg tree</p>
+<p>.</p>
+<p>├── a</p>
+<p>│   └── add.py</p>
+<p>├── b</p>
+<p>│   └── sub.py</p>
+<p>└── __init.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> abspath, join</span><br><span class="line">subdirs = <span class="keyword">lambda</span> *dirs: [abspath(join(__path__[<span class="number">0</span>], sub)) <span class="keyword">for</span> sub <span class="keyword">in</span> dirs]</span><br><span class="line">__path__ = subdirs(<span class="string">'a'</span>, <span class="string">'b'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://blog.csdn.net/u012450329/article/details/53001071" target="_blank" rel="noopener">Python中的 <strong>all</strong>和<strong>path</strong> 解析</a></li>
+</ul>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">➜  /tmp tree sound</span><br><span class="line">sound</span><br><span class="line">├── fuzz</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   └── __init__.pyc</span><br><span class="line">├── __init__.py</span><br><span class="line">├── __init__.pyc</span><br><span class="line">└── utils</span><br><span class="line">    ├── boss.py</span><br><span class="line">    ├── echo.py</span><br><span class="line">    ├── echo.pyc</span><br><span class="line">    ├── __init__.py</span><br><span class="line">    ├── __init__.pyc</span><br><span class="line">    ├── linux</span><br><span class="line">    │   ├── echo.py</span><br><span class="line">    │   └── echo.pyc</span><br><span class="line">    ├── sonic.py</span><br><span class="line">    └── windows</span><br><span class="line">        └── echo.py</span><br><span class="line"></span><br><span class="line"><span class="number">4</span> directories, <span class="number">13</span> files</span><br><span class="line"></span><br><span class="line"><span class="comment"># __all__: before add _all__ in sound/__init__.py</span></span><br><span class="line">➜  /tmp python</span><br><span class="line">Python <span class="number">2.7</span><span class="number">.12</span> (default, Nov <span class="number">20</span> <span class="number">2017</span>, <span class="number">18</span>:<span class="number">23</span>:<span class="number">56</span>)</span><br><span class="line">[GCC <span class="number">5.4</span><span class="number">.0</span> <span class="number">20160609</span>] on linux2</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> <span class="keyword">or</span> <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sound <span class="keyword">import</span> *</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir()</span><br><span class="line">[<span class="string">'__builtins__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__name__'</span>, <span class="string">'__package__'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># __all__: after add __all__ in sound/__init__.py</span></span><br><span class="line">➜  /tmp python</span><br><span class="line">Python <span class="number">2.7</span><span class="number">.12</span> (default, Nov <span class="number">20</span> <span class="number">2017</span>, <span class="number">18</span>:<span class="number">23</span>:<span class="number">56</span>)</span><br><span class="line">[GCC <span class="number">5.4</span><span class="number">.0</span> <span class="number">20160609</span>] on linux2</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> <span class="keyword">or</span> <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sound <span class="keyword">import</span> *</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir()</span><br><span class="line">[<span class="string">'__builtins__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__name__'</span>, <span class="string">'__package__'</span>, <span class="string">'fuzz'</span>, <span class="string">'utils'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># __path__: before add __path__ in sound/utils/__init__.py</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> sound.utils.echo</span><br><span class="line">This <span class="keyword">is</span> normal echo</span><br><span class="line"></span><br><span class="line"><span class="comment"># __path__: after add __path__ in sound/utils/__init__.py</span></span><br><span class="line">➜  /tmp python</span><br><span class="line">Python <span class="number">2.7</span><span class="number">.12</span> (default, Nov <span class="number">20</span> <span class="number">2017</span>, <span class="number">18</span>:<span class="number">23</span>:<span class="number">56</span>)</span><br><span class="line">[GCC <span class="number">5.4</span><span class="number">.0</span> <span class="number">20160609</span>] on linux2</span><br><span class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> <span class="keyword">or</span> <span class="string">"license"</span> <span class="keyword">for</span> more information.</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> sound.utils.echo</span><br><span class="line">sound.utils.__init__.__path__ before change: [<span class="string">'sound/utils'</span>]</span><br><span class="line">sound.utils.__init__.__path__ after change: [<span class="string">'sound/utils/linux'</span>, <span class="string">'sound/utils'</span>]</span><br><span class="line">This <span class="keyword">is</span> linux echo</span><br><span class="line"></span><br><span class="line"><span class="comment"># __path__: the code in sound/utils/__init__.py</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">print(<span class="string">'sound.utils.__init__.__path__ before change: &#123;&#125;'</span>.format(__path__))</span><br><span class="line">dirname = __path__[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> sys.platform[<span class="number">0</span>:<span class="number">5</span>] == <span class="string">'linux'</span>:</span><br><span class="line">    __path__.insert(<span class="number">0</span>, os.path.join(dirname, <span class="string">'linux'</span>))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    __path__.insert(<span class="number">0</span>, os.path.join(dirname, <span class="string">'windows'</span>))</span><br><span class="line"></span><br><span class="line">print(<span class="string">'sound.utils.__init__.__path__ after change: &#123;&#125;'</span>.format(__path__))</span><br></pre></td></tr></table></figure>
+<h3 id="静态方法和类方法"><a href="#静态方法和类方法" class="headerlink" title="静态方法和类方法"></a>静态方法和类方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(object)</span>:</span></span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">b</span><span class="params">()</span>:</span></span><br><span class="line">        print(self.a)</span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">c</span><span class="params">(cls)</span>:</span></span><br><span class="line">        print(cls.a)</span><br><span class="line">        </span><br><span class="line">u = User()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">u.b()</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-2-9bd563bff4c0&gt; in &lt;module&gt;()
+----&gt; 1 u.b()
+
+
+&lt;ipython-input-1-507161e2fc59&gt; in b()
+      3     @staticmethod
+      4     def b():
+----&gt; 5         print(self.a)
+      6     @classmethod
+      7     def c(cls):
+
+
+NameError: global name &apos;self&apos; is not defined
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.b()</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-3-f4347b1c4018&gt; in &lt;module&gt;()
+----&gt; 1 User.b()
+
+
+&lt;ipython-input-1-507161e2fc59&gt; in b()
+      3     @staticmethod
+      4     def b():
+----&gt; 5         print(self.a)
+      6     @classmethod
+      7     def c(cls):
+
+
+NameError: global name &apos;self&apos; is not defined
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">u.c()</span><br></pre></td></tr></table></figure>
+<pre><code>1
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.c()</span><br></pre></td></tr></table></figure>
+<pre><code>1
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(object)</span>:</span></span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">b</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'1'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">c</span><span class="params">(cls)</span>:</span></span><br><span class="line">        print(cls.a)</span><br><span class="line">        </span><br><span class="line">u = User()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">u.c()</span><br></pre></td></tr></table></figure>
+<pre><code>1
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.c()</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-11-9553038dc3d2&gt; in &lt;module&gt;()
+----&gt; 1 User.c()
+
+
+TypeError: unbound method c() must be called with User instance as first argument (got nothing instead)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">u.b()</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-12-9bd563bff4c0&gt; in &lt;module&gt;()
+----&gt; 1 u.b()
+
+
+TypeError: b() takes no arguments (1 given)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.b()</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-13-f4347b1c4018&gt; in &lt;module&gt;()
+----&gt; 1 User.b()
+
+
+TypeError: unbound method b() must be called with User instance as first argument (got nothing instead)
+</code></pre><h3 id="slots-大量属性时减少内存占用"><a href="#slots-大量属性时减少内存占用" class="headerlink" title="slots 大量属性时减少内存占用"></a><strong>slots</strong> 大量属性时减少内存占用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(object)</span>:</span></span><br><span class="line">    __slots__ = (<span class="string">'name'</span>, <span class="string">'age'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">u = User(<span class="string">'Jason'</span>, <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hasattr(u, <span class="string">'__dict__'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>False
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">u.title = <span class="string">'xxx'</span></span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-17-f77daebddfb3&gt; in &lt;module&gt;()
+----&gt; 1 u.title = &apos;xxx&apos;
+
+
+AttributeError: &apos;User&apos; object has no attribute &apos;title&apos;
+</code></pre><h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 函数装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">common</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_deco</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'args:'</span>, args)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> _deco</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@common</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(p)</span>:</span></span><br><span class="line">    print(p)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;function __main__._deco&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>(&apos;args:&apos;, (1,))
+1
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 类装饰器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Common</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func)</span>:</span></span><br><span class="line">        self.func = func</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, *args, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'args:'</span>, args)</span><br><span class="line">        <span class="keyword">return</span> self.func(*args, **kwargs)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Common</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(p)</span>:</span></span><br><span class="line">    print(p)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;__main__.Common at 0x5d1ccf8&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>(&apos;args:&apos;, (1,))
+1
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 给类的函数装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">borg</span><span class="params">(cls)</span>:</span></span><br><span class="line">    cls._state = &#123;&#125;</span><br><span class="line">    orig_init = cls.__init__</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">new_init</span><span class="params">(self, *args, **kwargs)</span>:</span></span><br><span class="line">        self.__dict__ = cls._state</span><br><span class="line">        orig_init(self, *args, **kwargs)</span><br><span class="line">    cls.__init__ = new_init</span><br><span class="line">    <span class="keyword">return</span> cls</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@borg</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">common</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(hex(id(self)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a, b = A(), A()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.d</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-35-5f3823c3dab6&gt; in &lt;module&gt;()
+----&gt; 1 b.d
+
+
+AttributeError: &apos;A&apos; object has no attribute &apos;d&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.d = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.d</span><br></pre></td></tr></table></figure>
+<pre><code>1
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 带参数的装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">common</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">    a = args</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_common</span><span class="params">(func)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">_deco</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">            print(<span class="string">'args:'</span>, args, a)</span><br><span class="line">            <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> _deco</span><br><span class="line">    <span class="keyword">return</span> _common</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@common('c')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(p)</span>:</span></span><br><span class="line">    print(p)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;function __main__._deco&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>(&apos;args:&apos;, (1,), (&apos;c&apos;,))
+1
+</code></pre><h3 id="描述符"><a href="#描述符" class="headerlink" title="描述符"></a>描述符</h3><p>1.当希望对某些类的属性进行特别的处理而不会对整体的其他属性有影响的话，可以使用描述符</p>
+<p>2.只要一个类实现了<strong>get</strong>、<strong>set</strong>、<strong>delete</strong>方法就是描述符</p>
+<p>3.描述符会“劫持”那些本对于self.<strong>dict</strong>的操作</p>
+<p>4.把一个类的操作托付与另外一个类</p>
+<p>5.静态方法，类方法，property都是构建描述符的方法（类）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self._x = <span class="keyword">None</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getx</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'get x'</span>)</span><br><span class="line">        <span class="keyword">return</span> self._x</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setx</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        print(<span class="string">'set x'</span>)</span><br><span class="line">        self._x = value</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delx</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'del x'</span>)</span><br><span class="line">        <span class="keyword">del</span> self._x</span><br><span class="line">    x = property(getx, setx, delx, <span class="string">'The x property'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c = C()</span><br><span class="line">c.x = <span class="number">12</span></span><br></pre></td></tr></table></figure>
+<pre><code>set x
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.x</span><br></pre></td></tr></table></figure>
+<pre><code>get x
+
+
+
+
+
+12
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parrot</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self._voltage = <span class="number">100000</span></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">voltage</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._voltage</span><br><span class="line"><span class="meta">    @voltage.setter</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">voltage</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        self._voltage = value</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c = Parrot()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.voltage</span><br></pre></td></tr></table></figure>
+<pre><code>100000
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.voltage = <span class="number">200</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.voltage</span><br></pre></td></tr></table></figure>
+<pre><code>200
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">'a'</span></span><br><span class="line">a.swapcase()</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;A&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 描述符的例子</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyDescriptor</span><span class="params">(object)</span>:</span></span><br><span class="line">    _value = <span class="string">''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get__</span><span class="params">(self, instance, klass)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._value</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__set__</span><span class="params">(self, instance, value)</span>:</span></span><br><span class="line">        self._value = value.swapcase()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Swap</span><span class="params">(object)</span>:</span></span><br><span class="line">    swap = MyDescriptor()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">instance = Swap()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">instance.swap</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">instance.swap = <span class="string">'make it swap'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">instance.swap</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;MAKE IT SWAP&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># __dict__被劫持了</span></span><br><span class="line">instance.__dict__</span><br></pre></td></tr></table></figure>
+<pre><code>{}
+</code></pre><p>Note:</p>
+<ul>
+<li>所有Python函数都默认有一个描述符</li>
+<li>这个描述符的特性在“类”这一个对象上下文之外没有任何意义</li>
+<li>但只要到了类中，instance.swap变成了<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Swap.__dict__[<span class="string">'swap'</span>].__get__(instance, Swap)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">t</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir(t)</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;__call__&apos;,
+ &apos;__class__&apos;,
+ &apos;__closure__&apos;,
+ &apos;__code__&apos;,
+ &apos;__defaults__&apos;,
+ &apos;__delattr__&apos;,
+ &apos;__dict__&apos;,
+ &apos;__doc__&apos;,
+ &apos;__format__&apos;,
+ &apos;__get__&apos;,
+ &apos;__getattribute__&apos;,
+ &apos;__globals__&apos;,
+ &apos;__hash__&apos;,
+ &apos;__init__&apos;,
+ &apos;__module__&apos;,
+ &apos;__name__&apos;,
+ &apos;__new__&apos;,
+ &apos;__reduce__&apos;,
+ &apos;__reduce_ex__&apos;,
+ &apos;__repr__&apos;,
+ &apos;__setattr__&apos;,
+ &apos;__sizeof__&apos;,
+ &apos;__str__&apos;,
+ &apos;__subclasshook__&apos;,
+ &apos;func_closure&apos;,
+ &apos;func_code&apos;,
+ &apos;func_defaults&apos;,
+ &apos;func_dict&apos;,
+ &apos;func_doc&apos;,
+ &apos;func_globals&apos;,
+ &apos;func_name&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用Python实现静态方法和类方法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myStaticMethod</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, method)</span>:</span></span><br><span class="line">        self.staticmethod = method</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get__</span><span class="params">(self, object, type=None)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.staticmethod</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myClassMethod</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, method)</span>:</span></span><br><span class="line">        self.classmethod = method</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get__</span><span class="params">(self, object, klass=None)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> klass <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            klass = type(object)</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">newfunc</span><span class="params">(*args)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> self.classmethod(klass, *args)</span><br><span class="line">        <span class="keyword">return</span> newfunc</span><br></pre></td></tr></table></figure>
+<h3 id="元类"><a href="#元类" class="headerlink" title="元类"></a>元类</h3><p>对象是类的实例，类是它的元类的实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(MyClass)</span><br></pre></td></tr></table></figure>
+<pre><code>classobj
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(MyClass)</span><br></pre></td></tr></table></figure>
+<pre><code>type
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(type)</span><br></pre></td></tr></table></figure>
+<pre><code>type
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对于这个例子，有没有括号都无所谓</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>:</span></span><br><span class="line">    __metaclass__ = type</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(MyClass)</span><br></pre></td></tr></table></figure>
+<pre><code>type
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(MyClass)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &apos;__main__.MyClass&apos;&gt;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(MyClass())</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;__main__.MyClass object at 0x0000000005D3A208&gt;
+</code></pre><p>模拟生成一个类：下面的方式等同于：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func)</span>:</span></span><br><span class="line">        self.func = func</span><br><span class="line">     <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模拟生成一个类</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func)</span>:</span></span><br><span class="line">    self.func = func</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(self)</span>:</span></span><br><span class="line">    print(<span class="string">'hello world'</span>)</span><br><span class="line"></span><br><span class="line">attrs = &#123;<span class="string">'__init__'</span>: __init__, <span class="string">'hello'</span>: hello&#125;</span><br><span class="line">bases = (object,)</span><br><span class="line">Hello = type(<span class="string">'Hello'</span>, bases, attrs)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h = Hello(<span class="keyword">lambda</span> a, b=<span class="number">3</span>: a + b)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h.func(<span class="number">1</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>4
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h.hello()</span><br></pre></td></tr></table></figure>
+<pre><code>hello world
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实现一个元类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloMeta</span><span class="params">(type)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, name, bases, attrs)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(cls, func)</span>:</span></span><br><span class="line">            cls.func = func</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(cls)</span>:</span></span><br><span class="line">            print(<span class="string">'hello world'</span>)</span><br><span class="line">        t = type.__new__(cls, name, bases, attrs)</span><br><span class="line">        t.__init__ = __init__</span><br><span class="line">        t.hello = hello</span><br><span class="line">        <span class="comment"># Return创建的类</span></span><br><span class="line">        <span class="keyword">return</span> t</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewHello</span><span class="params">(object)</span>:</span></span><br><span class="line">    __metaclass__ = HelloMeta</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nh = NewHello(<span class="keyword">lambda</span> a: a + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nh.hello()</span><br></pre></td></tr></table></figure>
+<pre><code>hello world
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 难懂的元类</span></span><br><span class="line">hellometa = <span class="keyword">lambda</span> name, parents, attrs: type(</span><br><span class="line">    name,</span><br><span class="line">    parents,</span><br><span class="line">    dict(attrs.items() + [</span><br><span class="line">        (<span class="string">'__new__'</span>, classmethod(</span><br><span class="line">        <span class="keyword">lambda</span> cls, *args, **kwargs:</span><br><span class="line">            super(type(cls), cls).__new__(</span><br><span class="line">                *args, **kwargs)</span><br><span class="line">        )),</span><br><span class="line">        (<span class="string">'hello'</span>, hello),</span><br><span class="line">        (<span class="string">'__init__'</span>, __init__)</span><br><span class="line">    ])</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NewHello2</span><span class="params">(object)</span>:</span></span><br><span class="line">    __metaclass__ = hellometa</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h = NewHello2(<span class="keyword">lambda</span> x: x)</span><br></pre></td></tr></table></figure>
+<pre><code>c:\python27\lib\site-packages\ipykernel_launcher.py:9: DeprecationWarning: object() takes no parameters
+  if __name__ == &apos;__main__&apos;:
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h.func</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;function __main__.&lt;lambda&gt;&gt;
+</code></pre><h3 id="模块：itertools（一）"><a href="#模块：itertools（一）" class="headerlink" title="模块：itertools（一）"></a>模块：itertools（一）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itertools</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l = [(<span class="number">1</span>, <span class="number">10</span>), (<span class="number">2</span>, <span class="number">10</span>), (<span class="number">3</span>, <span class="number">20</span>), (<span class="number">4</span>, <span class="number">20</span>)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> key, group <span class="keyword">in</span> itertools.groupby(l, <span class="keyword">lambda</span> t: t[<span class="number">1</span>]):</span><br><span class="line">    print(key, list(group))</span><br></pre></td></tr></table></figure>
+<pre><code>(10, [(1, 10), (2, 10)])
+(20, [(3, 20), (4, 20)])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Referer for enumerate: http://www.runoob.com/python/python-func-enumerate.html</span></span><br><span class="line">list(enumerate(range(<span class="number">10</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>[(0, 0),
+ (1, 1),
+ (2, 2),
+ (3, 3),
+ (4, 4),
+ (5, 5),
+ (6, 6),
+ (7, 7),
+ (8, 8),
+ (9, 9)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Referer for izip_longest: https://blog.csdn.net/orangleliu/article/details/23737701</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chunker</span><span class="params">(items, chunk_size)</span>:</span></span><br><span class="line">    args = [iter(items)] * chunk_size</span><br><span class="line">    <span class="keyword">return</span> itertools.izip_longest(*args)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Referer for filter: http://w ww.runoob.com/python/python-func-filter.html</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> chunker(range(<span class="number">10</span>), <span class="number">4</span>):</span><br><span class="line">    print(filter(<span class="keyword">lambda</span> x:x <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>, list(i)))</span><br></pre></td></tr></table></figure>
+<pre><code>[0, 1, 2, 3]
+[4, 5, 6, 7]
+[8, 9]
+</code></pre><h3 id="模块：collections（二）"><a href="#模块：collections（二）" class="headerlink" title="模块：collections（二）"></a>模块：collections（二）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">words = <span class="string">'Python is a good thing, not a bad thing'</span></span><br><span class="line">words = words.replace(<span class="string">','</span>, <span class="string">''</span>).split(<span class="string">' '</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">collections.Counter(words).most_common(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;a&apos;, 2),
+ (&apos;thing&apos;, 2),
+ (&apos;good&apos;, 1),
+ (&apos;Python&apos;, 1),
+ (&apos;is&apos;, 1),
+ (&apos;bad&apos;, 1),
+ (&apos;not&apos;, 1)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q = collections.deque()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q.append(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q.appendleft(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q</span><br></pre></td></tr></table></figure>
+<pre><code>deque([2, 1])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q.extend([<span class="number">3</span>, <span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q</span><br></pre></td></tr></table></figure>
+<pre><code>deque([2, 1, 3, 4])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q.extendleft([<span class="number">5</span>, <span class="number">6</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q</span><br></pre></td></tr></table></figure>
+<pre><code>deque([6, 5, 2, 1, 3, 4])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q.pop()</span><br></pre></td></tr></table></figure>
+<pre><code>4
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q.popleft()</span><br></pre></td></tr></table></figure>
+<pre><code>6
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q</span><br></pre></td></tr></table></figure>
+<pre><code>deque([5, 2, 1, 3])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q.rotate(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q</span><br></pre></td></tr></table></figure>
+<pre><code>deque([2, 1, 3, 5])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = dict((str(x), x) <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">','</span>.join(m.keys()))</span><br></pre></td></tr></table></figure>
+<pre><code>1,0,3,2,5,4,7,6,9,8
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = collections.OrderedDict((str(x), x) <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m</span><br></pre></td></tr></table></figure>
+<pre><code>OrderedDict([(&apos;0&apos;, 0),
+             (&apos;1&apos;, 1),
+             (&apos;2&apos;, 2),
+             (&apos;3&apos;, 3),
+             (&apos;4&apos;, 4),
+             (&apos;5&apos;, 5),
+             (&apos;6&apos;, 6),
+             (&apos;7&apos;, 7),
+             (&apos;8&apos;, 8),
+             (&apos;9&apos;, 9)])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> [(<span class="string">'a'</span>, <span class="number">1</span>), (<span class="string">'c'</span>, <span class="number">2</span>), (<span class="string">'a'</span>, <span class="number">3</span>)]:</span><br><span class="line">    <span class="keyword">if</span> k <span class="keyword">in</span> d:</span><br><span class="line">        d[k] += v</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        d[k] = v</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;a&apos;: 4, &apos;c&apos;: 2}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = collections.defaultdict(int)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m[<span class="string">'a'</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>0
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> [(<span class="string">'a'</span>, <span class="number">1</span>), (<span class="string">'c'</span>, <span class="number">2</span>), (<span class="string">'a'</span>, <span class="number">3</span>)]:</span><br><span class="line">    m[k] += v</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m</span><br></pre></td></tr></table></figure>
+<pre><code>defaultdict(int, {&apos;a&apos;: 4, &apos;c&apos;: 2})
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认值为1的dict</span></span><br><span class="line">g = collections.defaultdict(<span class="keyword">lambda</span>: <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g[<span class="string">'a'</span>] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g</span><br></pre></td></tr></table></figure>
+<pre><code>defaultdict(&lt;function __main__.&lt;lambda&gt;&gt;, {&apos;a&apos;: 2})
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g[<span class="string">'b'</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>1
+</code></pre><h3 id="operator模块（一）"><a href="#operator模块（一）" class="headerlink" title="operator模块（一）"></a>operator模块（一）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reduce(+, (<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>  File &quot;&lt;ipython-input-209-7006c100d9dc&gt;&quot;, line 1
+    reduce(+, (5, 4, 3, 2, 1))
+            ^
+SyntaxError: invalid syntax
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reduce(operator.add, (<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>15
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">operator.itemgetter(<span class="number">1</span>)(l)</span><br></pre></td></tr></table></figure>
+<pre><code>2
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">operator.itemgetter(<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>)(l)</span><br></pre></td></tr></table></figure>
+<pre><code>(2, 4, 5)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inventory = [(<span class="string">'apple'</span>, <span class="number">3</span>), (<span class="string">'banana'</span>, <span class="number">2</span>), (<span class="string">'pear'</span>, <span class="number">5</span>), (<span class="string">'orange'</span>, <span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(inventory, key=operator.itemgetter(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;orange&apos;, 1), (&apos;banana&apos;, 2), (&apos;apple&apos;, 3), (&apos;pear&apos;, 5)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fclass</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(self, param)</span>:</span></span><br><span class="line">        print(param)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fc = fclass()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 等同于fc.test(1)</span></span><br><span class="line">operator.methodcaller(<span class="string">'test'</span>, <span class="string">'1'</span>)(fc)</span><br></pre></td></tr></table></figure>
+<pre><code>1
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">operator.attrgetter(<span class="string">'platform'</span>)(sys)</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;win32&apos;
+</code></pre><h3 id="functools模块"><a href="#functools模块" class="headerlink" title="functools模块"></a>functools模块</h3><p>functools.partial冻结部分函数位置参数或关键字参数，简化函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    print(a, b)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p_test = functools.partial(test, a=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p_test(b=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>(10, 10)
+</code></pre><p>wraps把被封装函数的name，module，doc和dict都复制到封装函数中<br>partial(update_wrapper, wrapped=wrapped, assigned=assigned, updated=updated)的简写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">common</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_deco</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        <span class="string">'''In _deco'''</span></span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> _deco</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@common</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(p)</span>:</span></span><br><span class="line">    <span class="string">'''In test'''</span></span><br><span class="line">    print(p)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test.__doc__</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;In _deco&apos;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">common</span><span class="params">(func)</span>:</span></span><br><span class="line"><span class="meta">    @functools.wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_deco</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        <span class="string">'''In _deco'''</span></span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> _deco</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test.__doc__</span><br></pre></td></tr></table></figure>
+<pre><code>&apos;In test&apos;
+</code></pre><p>functools.cmp_to_key将老式比较函数转换成key函数，用在接受key函数的比较方法中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mycmp</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    x, y = int(x), int(y)</span><br><span class="line">    <span class="keyword">return</span> (x &gt; y) - (x &lt; y)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &gt; <span class="number">2</span> - <span class="number">1</span> &lt; <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<pre><code>False
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">values = [<span class="number">5</span>, <span class="string">'3'</span>, <span class="number">7</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(values, key=functools.cmp_to_key(mycmp))</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;3&apos;, 5, 7]
+</code></pre><p>functools.total_ordering，比较判定</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@functools.total_ordering</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        self.value = value</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__lt__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.value &lt; other.value</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># No __eq__ generated</span></span><br><span class="line">vars(Test)</span><br></pre></td></tr></table></figure>
+<pre><code>{&apos;__doc__&apos;: None,
+ &apos;__ge__&apos;: &lt;function functools.__ge__&gt;,
+ &apos;__gt__&apos;: &lt;function functools.__gt__&gt;,
+ &apos;__init__&apos;: &lt;function __main__.__init__&gt;,
+ &apos;__le__&apos;: &lt;function functools.__le__&gt;,
+ &apos;__lt__&apos;: &lt;function __main__.__lt__&gt;,
+ &apos;__module__&apos;: &apos;__main__&apos;}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test(<span class="number">1</span>) &lt; Test(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test(<span class="number">3</span>) &gt; Test(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test(<span class="number">2</span>) &lt;= Test(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>False
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@functools.total_ordering</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value)</span>:</span></span><br><span class="line">        self.value = value</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__lt__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.value &lt; other.value</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__eq__</span><span class="params">(self, other)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.value == other.value</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Test(<span class="number">2</span>) &lt;= Test(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>True
+</code></pre><h3 id="开发中遇到的问题"><a href="#开发中遇到的问题" class="headerlink" title="开发中遇到的问题"></a>开发中遇到的问题</h3><p>可变默认参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">append_to</span><span class="params">(element, to=[])</span>:</span></span><br><span class="line">    to.append(element)</span><br><span class="line">    <span class="keyword">return</span> to</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list = append_to(<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_list</span><br></pre></td></tr></table></figure>
+<pre><code>[12]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">other_list = append_to(<span class="number">21</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">other_list</span><br></pre></td></tr></table></figure>
+<pre><code>[12, 21]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id(my_list)</span><br></pre></td></tr></table></figure>
+<pre><code>98088264L
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id(other_list)</span><br></pre></td></tr></table></figure>
+<pre><code>98088264L
+</code></pre><p>闭包变量绑定</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_multipliers</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">lambda</span> x: i * x <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">items = create_multipliers()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">items</span><br></pre></td></tr></table></figure>
+<pre><code>[&lt;function __main__.&lt;lambda&gt;&gt;,
+ &lt;function __main__.&lt;lambda&gt;&gt;,
+ &lt;function __main__.&lt;lambda&gt;&gt;,
+ &lt;function __main__.&lt;lambda&gt;&gt;,
+ &lt;function __main__.&lt;lambda&gt;&gt;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">    print(item(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>8
+8
+8
+8
+8
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_multipliers</span><span class="params">()</span>:</span></span><br><span class="line">    s = [<span class="keyword">lambda</span> x: i * x <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line">    print(locals()[<span class="string">'i'</span>])</span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">items = create_multipliers()</span><br></pre></td></tr></table></figure>
+<pre><code>4
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_multipliers</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">lambda</span> x, i=i: i * x <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">items = create_multipliers()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">    print(item(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>0
+2
+4
+6
+8
+</code></pre><p>或者</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> mul</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_multipliers</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [partial(mul, i) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">items = create_multipliers()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">    print(item(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>0
+2
+4
+6
+8
+</code></pre></div></article><div id="base-discus"></div></div></div><footer class="base-footer"><div class="footer-wrapper"><span>Jason Tu Using </span><a href="https://github.com/chuguixin/Simple"><span>Simple</span></a><span> Presents For You.</span></div></footer><div class="dom-ready"><script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script><script src="/js/base.js"></script></div></body></html>

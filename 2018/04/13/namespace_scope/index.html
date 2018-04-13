@@ -1,0 +1,191 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Namespace and Scope（命名空间和作用域）:Python2.x</title><link rel="stylesheet" href="/css/layout.css">
+<link rel="stylesheet" href="/css/main.css"><link rel="shortcut icon" href="/img/favicon.png"></head><body><header class="base-menu"><div class="menu-wrapper"><div class="menu-layout-bg"></div><nav class="menu-content"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Fireflies FLy</a></li><li class="menu-item"><a href="/blog/archives" class="menu-link">Archives</a></li><li class="menu-item"><a href="/about" class="menu-link">About</a></li></ul></nav></div></header><header class="base-mobile-menu"><div class="mobile-menu-wrapper"><div class="menu-layout-bg"></div><nav class="menu-content"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Fireflies FLy</a></li><li class="menu-item"><a href="/blog/archives" class="menu-link">Archives</a></li><li class="menu-item"><a href="/about" class="menu-link">About</a></li></ul></nav><div id="mobile-menu-toggle" class="toggle-menu"><span class="menu-bar"></span><span class="menu-bar"> </span><span class="menu-bar"></span></div></div></header><div class="base-content"><div class="base-content-main"><article class="article-main"><h1 class="article-title">Namespace and Scope（命名空间和作用域）:Python2.x</h1><div class="article-meta"><p class="meta-item meta-time"><span class="meta-item-title">发表于: </span>2018-04-13</p><p class="meta-item meta-category"></p></div><div class="article-content"><h2 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h2><p>Namespace（只）是 从名字到对象的一个映射(a mapping from name to objects) 。大部分namespace都是按Python中的字典来实现的。有一些常见的namespace：built-in中的集合（ abs() 函数等）、一个模块中的全局变量等。</p>
+<p>从某种意义上来说，一个对象(object)的所有属性(attribute)也构成了一个namespace。在程序执行期间，可能（其实是肯定）会有多个名空间同时存在。不同namespace的创建/销毁时间也不同。</p>
+<p>此外，两个不同namespace中的两个相同名字的变量之间没有任何联系。</p>
+<h2 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h2><p>有了namespace基础之后，让我们再来看看scope。Scope是Python程序的一块文本区域(textual region)。</p>
+<p>在该文本区域中，对namespace是可以直接访问，而不需要通过属性来访问。</p>
+<p>Scope是定义程序该如何搜索确切地“名字-对象”的名空间的层级关系。<br>(The “scope” in Python defines the “hirerchy level” in which we search namespaces for<br>certain “name-to-object” mappings.)</p>
+<p>Tip</p>
+<p>直接访问：对一个变量名的引用会在所有namespace中查找该变量，而不是通过属性访问。</p>
+<p>属性访问：所有名字后加 . 的都认为是属性访问。</p>
+<p>如 module_name.func_name ，需要指定 func_name 的名空间，属于属性访问。<br>而 abs(-1) ， abs 属于直接访问。</p>
+<h2 id="两者之间有什么联系呢？"><a href="#两者之间有什么联系呢？" class="headerlink" title="两者之间有什么联系呢？"></a>两者之间有什么联系呢？</h2><p>Important</p>
+<p>在Python中，scope是由namespace按特定的层级结构组合起来的。</p>
+<p>scope一定是namespace，但namespace不一定是scope.</p>
+<h2 id="LEGB-rule"><a href="#LEGB-rule" class="headerlink" title="LEGB-rule"></a>LEGB-rule</h2><p>在一个Python程序运行中，至少有4个scopes是存在的。</p>
+<p>直接访问一个变量可能在这四个namespace中逐一搜索。</p>
+<ul>
+<li>Local(innermost)<br>包含局部变量。<br>比如一个函数/方法内部。</li>
+<li>Enclosing<br>包含了非局部(non-local)也非全局(non-global)的变量。<br>比如两个嵌套函数，内层函数可能搜索外层函数的namespace，但该namespace对内层函数而言既非局部也非全局。 </li>
+<li>Global(next-to-last)<br>当前脚本的最外层。<br>比如当前模块的全局变量。 </li>
+<li>Built-in(outtermost)<br>Python <strong>builtin</strong> 模块。<br>包含了内建的变量/关键字等。<br>那么，这么多的作用域，Python是按什么顺序搜索对应作用域的呢？</li>
+</ul>
+<p>著名的”LEGB-rule”，即scope的搜索顺序：</p>
+<p>Important</p>
+<p>Local -&gt; Enclosing -&gt; Global -&gt; Built-in</p>
+<p>怎么个意思呢？</p>
+<p>当有一个变量在 local 域中找不到时，Python会找上一层的作用域，即 enclosing 域（该域不一定存在）。enclosing 域还找不到的时候，再往上一层，搜索模块内的 global 域。最后，会在 built-in 域中搜索。对于最终没有搜索到时，Python会抛出一个 NameError 异常。</p>
+<p>作用域可以嵌套。比如模块导入时。</p>
+<p>这也是为什么不推荐使用 from a_module import * 的原因，导入的变量可能被当前模块覆盖。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assignment rule</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></span><br><span class="line">    a = <span class="number">0</span></span><br><span class="line">    b = <span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">        print(a)</span><br><span class="line">        print(b)</span><br><span class="line">        </span><br><span class="line">    inner()</span><br><span class="line"></span><br><span class="line">outer()</span><br></pre></td></tr></table></figure>
+<pre><code>0
+1
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add one expression then</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></span><br><span class="line">    a = <span class="number">0</span></span><br><span class="line">    b = <span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">        print(a)</span><br><span class="line">        <span class="comment"># 当解释器执行到这里时，发现变量b目前还没有找到，会继续尝试把整块代码解释完，，然后发现找到了b的定义</span></span><br><span class="line">        <span class="comment"># 然而在b赋值之前，先打印会导致报错</span></span><br><span class="line">        print(b)</span><br><span class="line">        </span><br><span class="line">        b = <span class="number">4</span></span><br><span class="line">    </span><br><span class="line">    inner()</span><br><span class="line">    </span><br><span class="line">outer()</span><br></pre></td></tr></table></figure>
+<pre><code>0
+
+
+
+---------------------------------------------------------------------------
+
+UnboundLocalError                         Traceback (most recent call last)
+
+&lt;ipython-input-8-85c08ac56cd6&gt; in &lt;module&gt;()
+     12     inner()
+     13 
+---&gt; 14 outer()
+
+
+&lt;ipython-input-8-85c08ac56cd6&gt; in outer()
+     10         b = 4
+     11 
+---&gt; 12     inner()
+     13 
+     14 outer()
+
+
+&lt;ipython-input-8-85c08ac56cd6&gt; in inner()
+      6         # 当解释器执行到这里时，发现变量b目前还没有找到，会继续尝试把整块代码解释完，，然后发现找到了b的定义
+      7         # 然而在b赋值之前，先打印会导致报错
+----&gt; 8         print(b)
+      9 
+     10         b = 4
+
+
+UnboundLocalError: local variable &apos;b&apos; referenced before assignment
+</code></pre><p>在这个例子中，只有A语句没有B语句也会导致同样的结果。<br>因为 b += 1 等同于 b = b + 1。</p>
+<p>对于变量的作用域查找有了了解之后，还有两条很重要的规则：</p>
+<p>Important</p>
+<ul>
+<li>赋值语句通常隐式地会创建一个局部(local)变量，即便该变量名已存在于赋值语句发生的上一层作用域中；</li>
+<li>如果没有 global 关键字声明变量，对一个变量的赋值总是认为该变量存在于最内层(innermost)的作用域中；</li>
+</ul>
+<p>也就是说在作用域内有没有发生赋值是不一样的。</p>
+<p>但是，在这点上，Python 2和Python 3又有不同， <a href="http://stackoverflow.com/questions/13282910/python-cant-access-nonlocal-variable-before-local-variable-is-defined-with-same" target="_blank" rel="noopener">Python access non-local variable</a>:</p>
+<p>Python’s scoping rules indicate that a function defines a new scope level,<br>and a name is bound to a value in only one scope level – it is statically scoped.</p>
+<p>…</p>
+<p>In Python 2.x, it is not possible to modify a non-local variable;</p>
+<ul>
+<li>you have either read-only access to a global or non-local variable,</li>
+<li>or read-write access to a global variable by using the global statement,</li>
+<li>or read-write access to a local variable (by default).</li>
+</ul>
+<p>In Python 3.x, the nonlocal statement has been introduced with a similar effect<br>to global, but for an intermediate scope.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">outer</span><span class="params">()</span>:</span></span><br><span class="line">    a = <span class="number">0</span></span><br><span class="line">    b = <span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">        print(a)</span><br><span class="line">        <span class="comment"># 当解释器执行到这里时，发现变量b目前还没有找到，会继续尝试把整块代码解释完，，然后发现找到了b的定义</span></span><br><span class="line">        <span class="comment"># 然而在b赋值之前，先打印会导致报错</span></span><br><span class="line">        print(b)</span><br><span class="line">        </span><br><span class="line">        b += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    inner()</span><br><span class="line">    </span><br><span class="line">outer()</span><br></pre></td></tr></table></figure>
+<pre><code>0
+
+
+
+---------------------------------------------------------------------------
+
+UnboundLocalError                         Traceback (most recent call last)
+
+&lt;ipython-input-9-3e3c644d266a&gt; in &lt;module&gt;()
+     12     inner()
+     13 
+---&gt; 14 outer()
+
+
+&lt;ipython-input-9-3e3c644d266a&gt; in outer()
+     10         b += 1
+     11 
+---&gt; 12     inner()
+     13 
+     14 outer()
+
+
+&lt;ipython-input-9-3e3c644d266a&gt; in inner()
+      6         # 当解释器执行到这里时，发现变量b目前还没有找到，会继续尝试把整块代码解释完，，然后发现找到了b的定义
+      7         # 然而在b赋值之前，先打印会导致报错
+----&gt; 8         print(b)
+      9 
+     10         b += 1
+
+
+UnboundLocalError: local variable &apos;b&apos; referenced before assignment
+</code></pre><h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>):</span><br><span class="line">    print(i)</span><br><span class="line">print(i)</span><br></pre></td></tr></table></figure>
+<pre><code>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+9
+</code></pre><p>有点不可思议是不是？</p>
+<p>在 <a href="https://docs.python.org/2.7/reference/compound_stmts.html#the-for-statement" target="_blank" rel="noopener">Python 2.x for语句</a> 中是这么说的：</p>
+<p>The for-loop makes assignments to the variable(s) in the target list.<br>This overwrites all previous assignments to those variablees including those made in the suite of the for-loop.</p>
+<p>…</p>
+<p>The target list is not deleted when the loop is finished.<br>But if the sequence is empty, they will not have been assigned to at all the loop.</p>
+<p>for 后面跟着的变量(target list)在循环结束后是不会被删除的，<br>但如果 for 循环的序列为空，这些变量是完全不会被赋值的。</p>
+<p>这在Python中是个大坑啊。</p>
+<p>避免这个坑的解决办法就是规范命名规范。<br>比如用于循环的变量尽量使用单字符。在任何有疑议的情况可以直接将索引值初始化。</p>
+<h2 id="List-Comprehension-vs-Generator-Expression"><a href="#List-Comprehension-vs-Generator-Expression" class="headerlink" title="List Comprehension vs. Generator Expression"></a>List Comprehension vs. Generator Expression</h2><ul>
+<li>列表推导式(List Comprehension): [expression for var in iterable]</li>
+<li>生成器表达式(Generator Expression): (expression for var in iterable)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    a = <span class="number">3</span></span><br><span class="line">    b = list((a + i <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-18-1d8243f27b6c&gt; in &lt;module&gt;()
+----&gt; 1 class A(object):
+      2     a = 3
+      3     b = list((a + i for i in xrange(10)))
+
+
+&lt;ipython-input-18-1d8243f27b6c&gt; in A()
+      1 class A(object):
+      2     a = 3
+----&gt; 3     b = list((a + i for i in xrange(10)))
+
+
+&lt;ipython-input-18-1d8243f27b6c&gt; in &lt;genexpr&gt;((i,))
+      1 class A(object):
+      2     a = 3
+----&gt; 3     b = list((a + i for i in xrange(10)))
+
+
+NameError: global name &apos;a&apos; is not defined
+</code></pre><p>class没有作用域(scope)，但有一个局部的名空间(namespace)，它并不构成一个作用域。<br>这意味着在类定义中的表达式可以访问该名空间。</p>
+<p>但在类体(class body)中， 对 b 的赋值表达式中，该表达式引入了一个新的作用域，该作用域并不能访问类的名空间。</p>
+<p>就像刚刚说的，函数会引入一个新的作用域。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    a = <span class="number">3</span></span><br><span class="line">    <span class="comment"># Python2中，列表推导式没有生成新的作用域</span></span><br><span class="line">    b = list([a + i <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">10</span>)])</span><br></pre></td></tr></table></figure>
+<p>而对于Python 2和Python 3，生成器表达式都有引入新的作用域。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 附一份：访问权限汇总表</span></span><br><span class="line"><span class="keyword">import</span> pandas</span><br><span class="line">data = pandas.DataFrame(&#123;</span><br><span class="line">    <span class="string">'Can Access class attributes'</span>: [<span class="string">'list comp. iterable'</span>, <span class="string">'list comp. expression'</span>, <span class="string">'gen expr. iterable'</span>, <span class="string">'gen expr. expression	'</span>, <span class="string">'dict comp. iterable'</span>, <span class="string">'dict comp expression'</span>],</span><br><span class="line">    <span class="string">'Python 2'</span>: list(<span class="string">'YYYNYN'</span>),</span><br><span class="line">    <span class="string">'Python 3'</span>: list(<span class="string">"YNYNYN"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data</span><br></pre></td></tr></table></figure>
+<div><br><style scoped><br>    .dataframe tbody tr th:only-of-type {<br>        vertical-align: middle;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br><br>    .dataframe thead th {<br>        text-align: right;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>Can Access class attributes</th><br>      <th>Python 2</th><br>      <th>Python 3</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>list comp. iterable</td><br>      <td>Y</td><br>      <td>Y</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>list comp. expression</td><br>      <td>Y</td><br>      <td>N</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>gen expr. iterable</td><br>      <td>Y</td><br>      <td>Y</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>gen expr. expression\t</td><br>      <td>N</td><br>      <td>N</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>dict comp. iterable</td><br>      <td>Y</td><br>      <td>Y</td><br>    </tr><br>    <tr><br>      <th>5</th><br>      <td>dict comp expression</td><br>      <td>N</td><br>      <td>N</td><br>    </tr><br>  </tbody><br></table><br></div>
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文介绍了Python中 namespace 和 scope 的区别，<br>以及复杂作用域的搜索规则（ LEGB ）。<br>此外，还介绍了一些常见的会创建scope的情况（函数定义，生成器表达式等），当然包括<br>了Python 2和Python 3中的不同实现。</p>
+<p>Python中对于作用域的定义确实是个大问题，我并没有找到像 C 语言那样，<br>“代码块 {} 中定义的即是一个局部作用域”这样简洁的规则来清晰地表明<br>Python中作用域的 创建/销毁 的条件。</p>
+<p>这篇文章的内容积压了很久，终于抽了点时间出来整理了下。</p>
+<p>写的也有点没章法了，各位看官看得懂就看吧；看不懂多看几遍吧。</p>
+<p>看望之后也提点啥建议意见之类的，好让后来人也能更快速简单的理解这个问题。<br>万一我理解错了呢？</p>
+<p>欢迎探讨。</p>
+<p>但有一点可以肯定，“这事儿还没完”。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] <a href="http://nbviewer.ipython.org/github/rasbt/python_reference/blob/master/tutorials/scope_resolution_legb_rule.ipynb" target="_blank" rel="noopener">A Beginner Guide to Python’s namespaces and scope resolution</a></p>
+<p>[2] <a href="https://docs.python.org/2/tutorial/classes.html#python-scopes-and-namespaces" target="_blank" rel="noopener">Python Scopes and Namespaces</a></p>
+<p>[3] <a href="http://stackoverflow.com/questions/47789/generator-expressions-vs-list-comprehension" target="_blank" rel="noopener">Generator Expressions vs. List Comprehension</a></p>
+<p>[4] <a href="http://stackoverflow.com/questions/11749629/reference-class-variable-in-a-comprehension-of-another-class-variable" target="_blank" rel="noopener">Reference class variable in a comprehension of another class variable</a></p>
+<p>[5] <a href="http://stackoverflow.com/questions/11669379/undefined-global-in-list-generator-expression-using-python3-works-with-python2/11670273" target="_blank" rel="noopener">Undefined global in list generator expression</a></p>
+<p>[6] <a href="http://stackoverflow.com/questions/13282910/python-cant-access-nonlocal-variable-before-local-variable-is-defined-with-same" target="_blank" rel="noopener">Python access non-local variable</a></p>
+<p>[7] <a href="https://mail.python.org/pipermail/python-dev/2009-February/086287.html" target="_blank" rel="noopener">Seeming unintended difference between list comprehensions and generator expressions</a></p>
+<p>[8] <a href="https://docs.python.org/2.7/reference/compound_stmts.html#the-for-statement" target="_blank" rel="noopener">Python 2.x for语句</a></p>
+</div></article><div id="base-discus"></div></div></div><footer class="base-footer"><div class="footer-wrapper"><span>Jason Tu Using </span><a href="https://github.com/chuguixin/Simple"><span>Simple</span></a><span> Presents For You.</span></div></footer><div class="dom-ready"><script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script><script src="/js/base.js"></script></div></body></html>
